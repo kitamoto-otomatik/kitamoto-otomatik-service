@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Application Startup') {
             steps {
-                bat 'docker run -d -t -p 127.0.0.1:8080:8080 --name kitamoto-otomatik-service kitamoto-otomatik-service-image:latest'
+                bat 'docker run -d -t -p 127.0.0.1:8080:8080 --name kitamoto-otomatik-service nikkinicholasromero/kitamoto-otomatik-service-image:latest'
             }
         }
     }
