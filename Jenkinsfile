@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                def image = docker.build("https://hub.docker.com/r/nikkinicholasromero/kitamoto-otomatik-service-image:latest")
+                def image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
             }
         }
         stage('Push Image') {
