@@ -1,4 +1,9 @@
 pipeline {
+    environment { 
+        registry = "nikkinicholasromero/kitamoto-otomatik-service" 
+        registryCredential = 'docker_credentials' 
+        dockerImage = '' 
+    }
     agent any
     stages {
         stage('Build Project') {
@@ -9,8 +14,10 @@ pipeline {
         stage('Build and Push Image') {
             steps {
                 script {
-                    def image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
-                    image.push()
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage = docker.build(registry + "latest")
+                        dockerImage.push()
+                    }
                 }
             }
         }
