@@ -1,8 +1,7 @@
 pipeline {
+    def image
     agent any
     stages {
-        def image
-        
         stage('Build Project') {
             steps {
                 bat 'mvn clean verify package'
