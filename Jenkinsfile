@@ -8,7 +8,9 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                 def image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
+                script {
+                     def image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
+                }
             }
         }
     }
