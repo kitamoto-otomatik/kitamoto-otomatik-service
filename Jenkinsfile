@@ -1,5 +1,4 @@
 pipeline {
-    def image
     agent any
     stages {
         stage('Build Project') {
@@ -9,7 +8,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                image = docker.build("https://hub.docker.com/r/nikkinicholasromero/kitamoto-otomatik-service-image:latest")
+                def image = docker.build("https://hub.docker.com/r/nikkinicholasromero/kitamoto-otomatik-service-image:latest")
             }
         }
         stage('Push Image') {
