@@ -1,6 +1,8 @@
 pipeline {
     agent any
     stages {
+        def image
+        
         stage('Build Project') {
             steps {
                 bat 'mvn clean verify package'
@@ -8,12 +10,12 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                bat 'docker build --tag nikkinicholasromero/kitamoto-otomatik-service-image:latest .'
+                image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
             }
         }
         stage('Push Image') {
             steps {
-                bat 'docker push nikkinicholasromero/kitamoto-otomatik-service-image:latest'
+                image.push('latest')
             }
         }
         stage('Application Startup') {
