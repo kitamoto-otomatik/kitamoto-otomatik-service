@@ -6,10 +6,11 @@ pipeline {
                 bat 'mvn clean verify package'
             }
         }
-        stage('Build Image') {
+        stage('Build and Push Image') {
             steps {
                 script {
-                     def image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
+                    def image = docker.build("nikkinicholasromero/kitamoto-otomatik-service-image:latest")
+                    image.push()
                 }
             }
         }
